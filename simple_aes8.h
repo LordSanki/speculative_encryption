@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdio>
 #include <string>
+#include <cstdlib>
 
 typedef unsigned char byte;
 struct aes8_key_type{

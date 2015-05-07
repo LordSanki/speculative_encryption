@@ -2,7 +2,7 @@
 #define __HELPER_H__
 
 #include <cstdio>
-
+#include <time.h>
 struct helper{
 	static long read_file(char * path, void **buff)
 	{
@@ -19,6 +19,22 @@ struct helper{
 		fclose(f);
 		return size;
 	}
+  struct timer{
+    timespec st, en;
+    inline void start() {
+      clock_gettime(CLOCK_REALTIME, &st);
+    }
+    inline void stop() {
+      clock_gettime(CLOCK_REALTIME, &en);
+    }
+    long double value() {
+      long double acc = (en.tv_sec - st.tv_sec);
+      acc *= 1E6;
+      acc += ((en.tv_nsec - st.tv_nsec)/1E3);
+      //acc += ((en.tv_nsec - st.tv_nsec)/1E9);
+      return acc;
+    }
+  };
 };
 
 #endif
