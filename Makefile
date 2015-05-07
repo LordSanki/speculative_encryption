@@ -1,18 +1,18 @@
-CFLAGS= -I. -g
+CFLAGS= -I. -Wno-write-strings
 LIBS=
 LFLGAS=
 
-src= aes_core.c cbc128.c cbc.c main.c
+src= simple_aes8.cpp
 
-obj= $(src:%.c=%.o)
+obj= $(src:%.cpp=%.o)
 
 all: $(obj)
-	@gcc -o bin $(obj) $(LFLAGS) $(LIBS)
+	@g++ -o bin $(obj) $(LFLAGS) $(LIBS)
 	@rm -f *.o
 	@echo "done..............."
 
-%.o: %.c
-	@gcc -c $(CFLAGS) $< -o $@
+%.o: %.cpp
+	@g++ -c $(CFLAGS) $< -o $@
 
 clean:
 	@rm -f bin *.o
